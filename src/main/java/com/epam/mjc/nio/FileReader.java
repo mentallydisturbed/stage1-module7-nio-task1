@@ -10,12 +10,12 @@ import java.nio.channels.FileChannel;
 public class FileReader {
 
     public void getDetails(StringBuilder s, Profile profile) {
-        String arr[] = s.toString().split("\n");
+        String[] arr = s.toString().split(System.lineSeparator());
         String[] name = arr[0].split(": ");
-        name[1] = name[1].substring(0, name[1].length() - 1);
+        //name[1] = name[1].substring(0, name[1].length() - 1);
         profile.setName(name[1]);
         String[] age = arr[1].split(": ");
-        age[1] = age[1].substring(0, age[1].length() - 1);
+        //age[1] = age[1].substring(0, age[1].length() - 1);
         try {
             int x = Integer.parseInt(age[1]);
             profile.setAge(x);
@@ -23,12 +23,12 @@ public class FileReader {
             e.printStackTrace();
         }
         String[] email = arr[2].split(": ");
-        email[1] = email[1].substring(0, email[1].length() - 1);
+        //email[1] = email[1].substring(0, email[1].length() - 1);
         profile.setEmail(email[1]);
 
         String[] phone = arr[3].split(": ");
         try {
-            phone[1] = phone[1].substring(0, phone[1].length() - 1);
+          //  phone[1] = phone[1].substring(0, phone[1].length() - 1);
             profile.setPhone(Long.parseLong(phone[1]));
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -49,15 +49,15 @@ public class FileReader {
             getDetails(sb, profile);
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            return profile;
         }
+        return profile;
+
     }
 
-    public static void main(String[] args) {
-        File file = new File("Profile.txt");
-        FileReader fr = new FileReader();
-        Profile profile = fr.getDataFromFile(file);
-        System.out.println(profile);
-    }
+//    public static void main(String[] args) {
+//        File file = new File("Profile.txt");
+//        FileReader fr = new FileReader();
+//        Profile profile = fr.getDataFromFile(file);
+//        System.out.println(profile);
+//    }
 }
